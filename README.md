@@ -71,3 +71,11 @@ volumes:
 | `ADMIN_TOKEN`        | ✅       | —                      |
 
 `RPC_SECRET` must be a 32-byte hex string. You can generate one with `openssl rand -hex 32`.
+
+## Image tags
+
+Published to `ghcr.io/branchard/cabane` on every change to `main` or on new Garage releases:
+
+- `latest`
+- `<garage-version>-<revision>` (e.g. `2.4.1-1`)
+- `<garage-version>`, `<major.minor>`, `<major>` (e.g. `2.4.1`, `2.4`, `2`)
