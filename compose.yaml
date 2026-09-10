@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json
+services:
+  cabane:
+    build:
+      context: .
+      args:
+        VERSION: dev
+        VCS_REF: ""
+        BUILD_DATE: ""
+        GARAGE_VERSION: ${GARAGE_VERSION}
+    environment:
+      ADMIN_TOKEN: DcG6+4c0eETRYT/7Bpz9qu+1xQu2DEcFClJaXnbEWgU=
+      RPC_SECRET: 5047bda706e16d268f0558d3b5c2319a587155b09ff99f902c347f5cf1e6d37c
+      RPC_PUBLIC_ADDR: garage:3901
+    ports:
+      - "3900:3900"
+      - "3902:3902"
+    volumes:
+      - garage-meta:/var/lib/garage/meta
+      - garage-data:/var/lib/garage/data
+
+volumes:
+  garage-meta:
+  garage-data:

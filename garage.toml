@@ -1,0 +1,16 @@
+metadata_dir = "${METADATA_DIR:-/var/lib/garage/meta}"
+data_dir = "${DATA_DIR:-/var/lib/garage/data}"
+db_engine = "${DB_ENGINE:-sqlite}"
+replication_factor = ${REPLICATION_FACTOR:-1}
+
+rpc_bind_addr = "${RPC_BIND_ADDR:-[::]:3901}"
+rpc_public_addr = "${RPC_PUBLIC_ADDR:?Missing RPC_PUBLIC_ADDR variable}"
+rpc_secret = "${RPC_SECRET:?Missing RPC_SECRET variable}"
+
+[s3_api]
+s3_region = "${S3_REGION:-garage}"
+api_bind_addr = "${S3_API_BIND_ADDR:-[::]:3900}"
+
+[admin]
+api_bind_addr = "${ADMIN_API_BIND_ADDR:-[::]:3902}"
+admin_token = "${ADMIN_TOKEN:?Missing ADMIN_TOKEN variable}"
