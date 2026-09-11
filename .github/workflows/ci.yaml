@@ -2,7 +2,7 @@ name: ci
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
   workflow_dispatch:
     inputs:
@@ -180,7 +180,7 @@ jobs:
         run: docker logs cabane || true
 
   push:
-    needs: [build, test]
+    needs: [ build, test ]
     if: >
       needs.build.outputs.should_push == 'true' &&
       github.ref == 'refs/heads/main' &&
