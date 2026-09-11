@@ -1,5 +1,7 @@
 # Cabane
 
+[![ci](https://github.com/branchard/cabane/actions/workflows/ci.yaml/badge.svg)](https://github.com/branchard/cabane/actions/workflows/ci.yaml)
+
 A [Garage](https://garagehq.deuxfleurs.fr/) container image configurable entirely through environment variables.
 
 ## Why
