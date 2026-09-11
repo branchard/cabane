@@ -23,6 +23,7 @@ start: ## Start containers with Docker Compose
 	fi; \
 	echo "Latest stable Garage version: $${version}"; \
 	GARAGE_VERSION=$${version} docker compose up -d --build
+	@echo "Open \"http://localhost:8080\" in your browser"
 
 stop: ## Stop and delete all containers
 	GARAGE_VERSION=none docker compose down

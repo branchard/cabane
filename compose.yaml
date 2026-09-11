@@ -9,15 +9,37 @@ services:
         BUILD_DATE: ""
         GARAGE_VERSION: ${GARAGE_VERSION}
     environment:
-      ADMIN_TOKEN: DcG6+4c0eETRYT/7Bpz9qu+1xQu2DEcFClJaXnbEWgU=
+      ADMIN_TOKEN: &admin_token DcG6+4c0eETRYT/7Bpz9qu+1xQu2DEcFClJaXnbEWgU=
       RPC_SECRET: 5047bda706e16d268f0558d3b5c2319a587155b09ff99f902c347f5cf1e6d37c
-      RPC_PUBLIC_ADDR: garage:3901
+      RPC_PUBLIC_ADDR: cabane:3901
+      S3_REGION: &s3_region garage
     ports:
       - "3900:3900"
       - "3902:3902"
     volumes:
       - garage-meta:/var/lib/garage/meta
       - garage-data:/var/lib/garage/data
+    healthcheck:
+      test: [ "CMD", "/garage", "status" ]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  # Talks to `cabane` over its S3 and Admin APIs, so it's configured with
+  # plain env vars rather than by mounting garage.toml
+  webui:
+    image: khairul169/garage-webui:latest
+    depends_on:
+      cabane:
+        condition: service_healthy
+    environment:
+      API_BASE_URL: http://cabane:3902
+      API_ADMIN_KEY: *admin_token
+      S3_ENDPOINT_URL: http://cabane:3900
+      S3_REGION: *s3_region
+    ports:
+      - "8080:3909"
 
 volumes:
   garage-meta:
